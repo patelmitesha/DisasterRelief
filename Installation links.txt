@@ -1,0 +1,10 @@
+Installation links
+
+node js
+-----
+https://nodejs.org/dist/v8.2.1/node-v8.2.1-win-x64.zip
+
+sublime 
+-------
+https://download.sublimetext.com/Sublime%20Text%20Build%203126%20x64.zip
+
