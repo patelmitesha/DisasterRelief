@@ -17,6 +17,10 @@
         html                    { overflow-y:scroll; }
         body                    { padding-top:50px; }
         #todo-list              { margin-bottom:30px; }
+       #map {
+        height: 400px;
+        width: 100%;
+       }
     </style>
 
     <!-- SPELLS -->
@@ -29,11 +33,14 @@
 <body ng-controller="mainController">
     <div class="container">
 
+
+
         <!-- HEADER AND TODO COUNT -->
         <div class="jumbotron text-center">
             <h1>I'm a Todo-aholic <span class="label label-info">{{ locations.length }}</span></h1>
         </div>
 
+<div id="map"></div>
         <!-- TODO LIST -->
         <div id="todo-list" class="row">
             <div class="col-sm-4 col-sm-offset-4">
@@ -66,5 +73,63 @@
 
     </div>
 
+ <script>
+      function initMap() {
+      
+        var centerPoint = {lat: 23.0225, lng: 72.5714};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 7,
+          center: centerPoint
+        });
+        
+        google.maps.event.addListener(map,'click',function(event){
+            console.log(event.latLng);
+            addMarker({coords:event.latLng});
+        });
+        
+        var markers=[$('[ng-controller="mainController"]').scope().locations];
+        console.log("Markers : "+ markers);
+        for(var i=0;i<markers.length;i++){
+        //addMarker(markers[i]);
+        console.log(markers[i]);
+    }
+        // Adds a marker to the map.
+        
+        
+  
+function addMarker(location) {
+  // Add the marker at the clicked location, and add the next-available label
+  // from the array of alphabetical characters.
+  var marker = new google.maps.Marker({
+    position: location.coords,
+    //label: location.label,
+    map: map,
+    icon:location.icon
+  });
+  
+  if(location.icon){
+    marker.setIcon(location.icon);
+  }
+  
+  if(location.label){
+  marker.setLabel(location.label);
+  }
+var infoWindow=new google.maps.InfoWindow({
+    content:location.content
+});
+
+marker.addListener('click',function(){
+    infoWindow.open(map,marker);
+});
+
+  
+  }
+
+
+      }
+    </script>
+ <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHRsjiIJjcbAHYPPe5pCh6j-5STNUeF8E&callback=initMap">
+    </script>
 </body>
 </html>
