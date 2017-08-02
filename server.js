@@ -19,11 +19,29 @@ mongoose.connection.openUri('mongodb://localhost/DisasterRelief');
     app.use(methodOverride());
 
  // define model =================
-    var dbDisasterRelief = mongoose.model('DisasterRelief', {
+    var dbDisasterRelief = mongoose.model('locations', {
         LocationName : String,
         AreaName : String,
         coords : {lat : String,lng:String}
     });
+
+// routes ======================================================================
+
+    // api ---------------------------------------------------------------------
+    // get all todos
+    app.get('/api/locations', function(req, res) {
+
+        // use mongoose to get all todos in the database
+        dbDisasterRelief.find(function(err, locations) {
+
+            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+            if (err)
+                res.send(err)
+
+            res.json(locations); // return all todos in JSON format
+        });
+    });
+
 
 // application -------------------------------------------------------------
     app.get('*', function(req, res) {
