@@ -1,0 +1,25 @@
+{
+  "name": "disasterrelief",
+  "version": "1.0.0",
+  "description": "GIS based software for disaster management",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patelmitesha/DisasterRelief.git"
+  },
+  "keywords": [
+    "disaster"
+  ],
+  "author": "Mitesh Patel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patelmitesha/DisasterRelief/issues"
+  },
+  "homepage": "https://github.com/patelmitesha/DisasterRelief#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}
