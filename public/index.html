@@ -55,6 +55,7 @@
             </div>
         </div>
 
+<input type="hidden" id="markerParam" name="markerParam" value="{{ locations}}">
         <!-- FORM TO CREATE TODOS -->
         <div id="todo-form" class="row">
             <div class="col-sm-8 col-sm-offset-2 text-center">
@@ -87,12 +88,24 @@
             addMarker({coords:event.latLng});
         });
         
-        var markers=[$('[ng-controller="mainController"]').scope().locations];
-        console.log("Markers : "+ markers);
+
+  $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/api/locations",
+            data: "",
+            success: function(data) {
+             
+alert(data);
+        var markers=data;
+        alert("Markers : "+ markers[0].LocationName);
         for(var i=0;i<markers.length;i++){
-        //addMarker(markers[i]);
+        addMarker(markers[i]);
         console.log(markers[i]);
-    }
+    }       
+            }
+        });
+
+        
         // Adds a marker to the map.
         
         

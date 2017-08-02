@@ -22,7 +22,7 @@ mongoose.connection.openUri('mongodb://localhost/DisasterRelief');
     var dbDisasterRelief = mongoose.model('locations', {
         LocationName : String,
         AreaName : String,
-        coords : {lat : String,lng:String}
+        coords : {lat : Number,lng:Number}
     });
 
 // routes ======================================================================
