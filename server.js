@@ -9,6 +9,7 @@
     // configuration =================
 
 //    mongoose.connect('mongodb://node:nodeuser@mongo.onmodulus.net:27017/uwO3mypu');     // connect to mongoDB database on modulus.io
+mongoose.connection.openUri('mongodb://localhost/DisasterRelief');
 
     app.use(express.static(__dirname + '/public'));                 // set the static files location /public/img will be /img for users
     app.use(morgan('dev'));                                         // log every request to the console
@@ -17,9 +18,16 @@
     app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
     app.use(methodOverride());
 
+ // define model =================
+    var dbDisasterRelief = mongoose.model('DisasterRelief', {
+        LocationName : String,
+        AreaName : String,
+        coords : {lat : String,lng:String}
+    });
+
 // application -------------------------------------------------------------
     app.get('*', function(req, res) {
-        res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+        res.sendFile(__dirname + '/public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
     });
 
     // listen (start app with node server.js) ======================================
