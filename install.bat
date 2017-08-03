@@ -15,4 +15,8 @@ powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://downlo
 
 7z x C:\Users\mitesh\Downloads\sublime.zip -oC:\Users\mitesh\Downloads\sublime
 
+npm install -g angular-cli
 
+npm install -g nodemon
+
+echo "Download code from git"
